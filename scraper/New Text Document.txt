@@ -1,0 +1,15 @@
+Get all departments:
+response.css('div._p13n-zg-nav-tree-all_style_zg-browse-group__88fbz div a::attr(href)').getall()
+
+In each department, get top bestselling products:
+response.css('div.p13n-sc-uncoverable-faceout a:nth-child(2)::attr(href)').getall()
+
+On each product page:
+	Get title:
+		response.css("h1#title span#productTitle::text").get()
+	Get Rating:
+		response.css("span#acrPopover span.a-size-base.a-color-base::text").get()
+	Get total raters:
+		response.css("span#acrCustomerReviewText::text").get()
+	Get product information:
+		response.css("ul.a-unordered-list.a-vertical.a-spacing-mini li span::text").getall()
