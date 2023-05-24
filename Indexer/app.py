@@ -46,12 +46,13 @@ if __name__ == "__main__":
     )
 
     QA_template = QuestionAnswerPrompt(
-        "USER: Context information is below."
+        "### Human: Context information is below."
         "\n---------------------\n"
         "{context_str}"
         "\n---------------------\n"
         "Limiting yourself only to the context above, "
-        "answer the question: {query_str}.\n ASSISTANT: "
+        "answer the question: {query_str}.\n "
+        "### Assistant: "
     )
 
     query_engine = indexer.as_query_engine(text_qa_template=QA_template)
@@ -70,13 +71,10 @@ if __name__ == "__main__":
     with gr.Blocks(title='Amazon Bestsellers', theme=gr.themes.Soft()) as iface:
         with gr.Row():
             gr.Markdown(
-                """
-                # Find bestselling products on 
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png" alt="Image" height="40px">
-                """
+                "# Find bestselling products on Amazon"
             )
         
-        with gr.Row():
+        with gr.Column():
             chatbot = gr.Chatbot()
             input_text = gr.Textbox(placeholder="Find your best product")
             input_text.submit(
