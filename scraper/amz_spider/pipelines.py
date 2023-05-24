@@ -8,22 +8,15 @@
 from itemadapter import ItemAdapter
 import pymongo
 
+class MongoDBPipeline(object):
 
-class AmzSpiderPipeline:
-    def process_item(self, item, spider):
-        return item
-
-
-class MongoDBPipeline:
-    collection_name = 'amazon'
-
-    def open_spider(self, spider):
+    def __init__(self) -> None:
         self.client = pymongo.MongoClient('localhost', 27017)
-        self.db = self.client['bestsellers']
+        self.collection = self.client['amazon']['bestsellers']
 
     def close_spider(self, spider):
         self.client.close()
 
     def process_item(self, item, spider):
-        self.db[self.collection_name].insert_one(dict(item))
-        return item
+        self.collection.insert_one(dict(item))
+        return f"Total number of products scraped: {self.collection.count_documents({})}"
