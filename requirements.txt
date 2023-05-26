@@ -1,0 +1,6 @@
+scrapy
+pymongo==4.3.3
+torch==2.0.1+cu117
+transformers==4.29.2
+llama-index==0.6.7
+gradio==3.32.0
