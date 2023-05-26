@@ -4,6 +4,14 @@ I wrote a series of blog which will help with understanding the project elements
 - [[Tale 1] Scraping products using Scrapy + MongoDB.](https://medium.com/@ambesh.sinha/tale-1-scraping-products-using-scrapy-mongodb-8f2c24e120db)
 - [[Tale 2] LLM sides with Indexers llama-index + transformers.](https://medium.com/@ambesh.sinha/tale-2-llm-sides-with-indexers-llama-index-transformers-5a3a3ea21ae0)
 
+
+## Test Cases:
+https://github.com/AmbiTyga/BestsellerLLM/assets/39136064/9ac5d16e-949e-4be1-8d48-18f4b6d9f796
+
+https://github.com/AmbiTyga/BestsellerLLM/assets/39136064/9b9652cd-c414-4326-8899-3664ea9ac33d
+
+https://github.com/AmbiTyga/BestsellerLLM/assets/39136064/de43428d-1293-4452-89dd-245e0eec8706
+
 ## Setup:
 Create a python environment, I will be using virtual env. Open your OS CLI and run this:
 ```
