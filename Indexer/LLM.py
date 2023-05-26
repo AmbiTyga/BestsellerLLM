@@ -6,19 +6,15 @@ from typing import Optional, List, Mapping, Any
 class CustomLLM(LLM):
     tokenizer : LlamaTokenizer
     model : LlamaForCausalLM
-    
-    def loadmodel(self):
-        self.model.to(self.device)
         
     def _call(self, prompt: str, stop: Optional[List[str]] = None) -> str:
         
         inputs = self.tokenizer(prompt, return_tensors="pt", max_length=2048, padding = False, truncation = True)
         input_length = inputs.input_ids.shape[1]
-
         with torch.autocast(self.model.device.type):
             output = self.model.generate(inputs.input_ids.to(self.model.device),
                                          attention_mask = inputs.attention_mask.to(self.model.device), 
-                                        max_length=min(2048, len(inputs.input_ids[0])+1024), 
+                                         max_length=min(2048, len(inputs.input_ids[0])+1024), 
                                          do_sample=True, 
                                          temperature = 0.001)
         torch.cuda.empty_cache()

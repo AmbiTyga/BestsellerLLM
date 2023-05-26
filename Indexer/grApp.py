@@ -1,15 +1,16 @@
 import gradio as gr
 import time
-from typing import Any
+import torch
 class IndexingUI:
     
-    query_engine: Any
+    def __init__(self, query_engine):
+        self.query_engine = query_engine
 
     def user(self, user_text, history):
         return "", history + [[user_text, None]]
 
     def generate(self, history):
-        result = self.query_engine(history[-1][0])
+        result = self.query_engine.query(history[-1][0])
         history[-1][1] = ""
         for character in str(result.response):
             history[-1][1] += character

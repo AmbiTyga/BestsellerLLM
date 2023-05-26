@@ -12,9 +12,9 @@ import gradio as gr
 
 if __name__ == "__main__":
     prompt_helper = PromptHelper(
-        max_input_size=512,
+        max_input_size=1024,
         num_output=256,
-        max_chunk_overlap=20
+        max_chunk_overlap=10
     )
 
     hfemb = HuggingFaceEmbeddings(
