@@ -1,4 +1,5 @@
 from LLM import CustomLLM
+from grApp import IndexingUI
 from transformers import LlamaTokenizer, LlamaForCausalLM
 import torch
 from llama_index import LangchainEmbedding, GPTVectorStoreIndex, PromptHelper
@@ -11,7 +12,7 @@ import gradio as gr
 
 if __name__ == "__main__":
     prompt_helper = PromptHelper(
-        max_input_size=1024,
+        max_input_size=512,
         num_output=256,
         max_chunk_overlap=20
     )
@@ -57,33 +58,6 @@ if __name__ == "__main__":
 
     query_engine = indexer.as_query_engine(text_qa_template=QA_template)
 
-    def user(user_text, history):
-        return "", history + [[user_text, None]]
-    
-    def generate(history):
-        result = query_engine.query(history[-1][0])
-        history[-1][1] = ""
-        for character in str(result.response):
-            history[-1][1] += character
-            time.sleep(0.05)
-            yield history
+    grUI = IndexingUI(query_engine=query_engine)
 
-    with gr.Blocks(title='Amazon Bestsellers', theme=gr.themes.Soft()) as iface:
-        with gr.Row():
-            gr.Markdown(
-                "# Find bestselling products on Amazon"
-            )
-        
-        with gr.Column():
-            chatbot = gr.Chatbot()
-            input_text = gr.Textbox(placeholder="Find your best product")
-            input_text.submit(
-                user, [input_text, chatbot], [input_text, chatbot], queue = False
-            ).then(
-                generate, chatbot, chatbot
-            )
-
-    iface.queue()
-    iface.launch(
-        server_name = 'localhost',
-        server_port = 8888)
+    grUI.launch(host='localhost', port=8888)

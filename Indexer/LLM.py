@@ -12,8 +12,6 @@ class CustomLLM(LLM):
         
     def _call(self, prompt: str, stop: Optional[List[str]] = None) -> str:
         
-        # prompt = f"### Human: {prompt}\n### Assistant: "
-        
         inputs = self.tokenizer(prompt, return_tensors="pt", max_length=2048, padding = False, truncation = True)
         input_length = inputs.input_ids.shape[1]
 
@@ -21,7 +19,6 @@ class CustomLLM(LLM):
             output = self.model.generate(inputs.input_ids.to(self.model.device),
                                          attention_mask = inputs.attention_mask.to(self.model.device), 
                                         max_length=min(2048, len(inputs.input_ids[0])+1024), 
-                                         # min_length = max(128, len(inputs.input_ids[0])+128),
                                          do_sample=True, 
                                          temperature = 0.001)
         torch.cuda.empty_cache()
