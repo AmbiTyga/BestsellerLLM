@@ -66,6 +66,7 @@ Your data will get dumped into MongoDB database at each extraction
 
 ## Loading LLM on UI
 > Note: I expect you have 10GB of VRAM in your system, or you are using a dedicated server with GPU runtime.
+
 Move to `./Indexer` directory using command line interface
 ```
 cd Indexer
