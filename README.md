@@ -6,11 +6,20 @@ I wrote a series of blog which will help with understanding the project elements
 
 
 ## Test Cases:
-[Testcase - 1](testcases/T1.mp4)
 
-[Testcase - 2](testcases/T2.mp4)
 
-[Testcase - 3](testcases/T3.mp4)
+https://github.com/AmbiTyga/BestsellerLLM/assets/39136064/9f54205a-ec39-4132-8b69-30cf4673d24b
+
+
+
+https://github.com/AmbiTyga/BestsellerLLM/assets/39136064/14bff984-2e71-4c86-8fe0-22b22a11d3c7
+
+
+
+
+https://github.com/AmbiTyga/BestsellerLLM/assets/39136064/20a722bb-71b9-448f-8c68-e6c6ea3e62c6
+
+
 
 ## Setup:
 Create a python environment, I will be using virtual env. Open your OS CLI and run this:
