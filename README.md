@@ -44,3 +44,34 @@ Next install dependencies of the project to your virtual env using the `requirem
 ```
 pip install -r requirements.txt
 ```
+
+## Scraping
+First setup your MongoDB, follow the instructions:
+- Download MongoDB Compass GUI from [here](https://www.mongodb.com/try/download/compass) and install it in your local system. 
+- Open MongoDB compass and connect to your database server or create one if there's not any.
+- On the left-hand-side panel, right next to ↻ symbol, there's a ➕symbol. Click it to create a new database. Rename it to amazon.
+- Click on the database, and you'll see another ➕symbol, click it to create a new collection. Rename it to bestsellers.
+
+Get back to project directory using your command line interface.
+- Move to `./scraper` directory.
+```
+cd scraper
+```
+- Initialize the spider using following command:
+```
+scrapy crawl amzSpider
+```
+
+Your data will get dumped into MongoDB database at each extraction
+
+## Loading LLM on UI
+> Note: I expect you have 10GB of VRAM in your system, or you are using a dedicated server with GPU runtime.
+Move to `./Indexer` directory using command line interface
+```
+cd Indexer
+```
+Run the gradio app:
+```
+python app.py
+```
+Go to [localhost:8888](https://localhost:8888/)
